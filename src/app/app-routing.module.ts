@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TableComponent } from './table/table.component';
+import { UsersCardComponent } from './users-card/users-card.component';
+const routes = [
+  {
+    path: '',
+    component: UsersCardComponent
+  },
+  {
+    path: 'todos',
+    loadChildren : () => import('./table/todos.module').then(m => m.TodosModule)
+  }
+];
 
-const routes: Routes = [{
-  path: '/',
-  component: TableComponent 
-}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

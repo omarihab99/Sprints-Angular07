@@ -1,0 +1,14 @@
+<!-- <p-accordionTab *ngFor="let user of users">
+    
+    <ng-template pTemplate = "content">
+    </ng-template>
+</p-accordionTab> -->
+<a  [style]="{textDecoration: 'none'}">
+    <p-card *ngFor="let user of users" [style]="{marginBottom: '2%' }" (click)="enterPassword(user.username)">
+            <img src="{{user.avatar}}" alt="Image" class="tab-image">
+            <p class="tab-name">{{user.username}}</p>
+    </p-card>
+</a>
+<p-password [feedback]="false" placeholder="Password" [toggleMask]="true" required #passwordField [disabled]="disabled" class="{{invalid}}" ></p-password>
+<p-button icon="pi pi-check" styleClass="p-button-rounded" [style]="{marginLeft: '2%' }" (click)="checkPassword(passwordField.value)" [disabled]="disabled"></p-button>
+

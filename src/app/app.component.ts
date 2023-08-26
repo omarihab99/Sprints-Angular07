@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { User } from './user';
 import { TasksService } from './tasks.service';
 import { Task } from './task';
@@ -7,7 +7,7 @@ import { Task } from './task';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
   loggedInUser : User | undefined;
   password! : string;
   users: User[] = [];
@@ -16,22 +16,19 @@ export class AppComponent implements OnInit{
 
   constructor(private tasksService: TasksService) {
   }
-  ngOnInit() {
-    this.tasksService.getUsers().subscribe(users => {
-      this.users = users;
-    });
-  }
-  login(){
-    this.tasksService.getTasks(this.selectedUser, this.password).subscribe(
-      {
-        next: tasks => {
-          this.tasks = tasks;
-          this.loggedInUser = this.users.find(user => user.username === this.selectedUser);
-        },
-        error: err => alert('Invalid credentials. Please try again')
-      }
-    );
-  }
+  
+  
+  // login(){
+  //   this.tasksService.getTasks(this.selectedUser, this.password).subscribe(
+  //     {
+  //       next: tasks => {
+  //         this.tasks = tasks;
+  //         this.loggedInUser = this.users.find(user => user.username === this.selectedUser);
+  //       },
+  //       error: err => alert('Invalid credentials. Please try again')
+  //     }
+  //   );
+  // }
   logout(){
     this.loggedInUser = undefined;
     this.tasks = [];
