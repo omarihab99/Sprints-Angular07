@@ -22,7 +22,7 @@ export class TodosComponent  {
     this.password = this.sharedDataService.getData().password;
     this.user_id = this.sharedDataService.getData().user_id;
   }
-  updateTask(event: any, item: Task){
+  updateTodo(event: any, item: Task){
     // const newValue = event.checked;
     // item.completed = newValue;
     this.tasksService.updateTask(item, this.loggedInUser!, this.password!).subscribe(
@@ -52,5 +52,16 @@ export class TodosComponent  {
         error: () => alert('Invalid credentials. Please try again')
       }
     )
+    this.visible = false;
+  }
+  deleteTodo(event:any, item: Task){
+    this.tasksService.deleteTask(item, this.loggedInUser!, this.password!).subscribe(
+      {
+        next: task => {
+          this.todos = this.todos.filter(t => t.id !== item.id);
+        },
+        error: () => alert('Invalid credentials. Please try again')
+      }
+    );
   }
 }

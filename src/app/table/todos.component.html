@@ -11,8 +11,8 @@
       <td>{{ todo.id }}</td>
       <td [style.textDecoration]="todo.completed ? 'line-through' : 'none'">{{ todo.task }}</td>
       <td>
-        <p-button icon="pi pi-check" styleClass="p-button-rounded p-button-text" (onClick)="updateTask($event, todo)"></p-button>
-        <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
+        <p-button icon="pi pi-check" styleClass="p-button-rounded p-button-text" (onClick)="updateTodo($event, todo)"></p-button>
+        <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger p-button-text " (onClick)="deleteTodo($event, todo)"></p-button>
       </td>
     </tr>
   </ng-template>

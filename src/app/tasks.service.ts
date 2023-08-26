@@ -28,14 +28,12 @@ export class TasksService {
     const headers = new HttpHeaders({
       authorization: 'Basic ' + btoa(username + ':' + password)
     });
-    const params = new HttpParams().set('id', task.id);
-    return this.http.delete<Task>(this.apiUrl +  'todos', { headers, params });
+    return this.http.delete<Task>(this.apiUrl +  `todos/${task.id}`, { headers });
   }
   updateTask(task: Task, username: string, password: string): Observable<Task> {
     const headers = new HttpHeaders({
       authorization: 'Basic ' + btoa(username + ':' + password)
     });
-    const params = new HttpParams().set('id', task.id);
-    return this.http.patch<Task>(this.apiUrl + 'todos', task, { headers,params });
+    return this.http.put<Task>(this.apiUrl + `todos/${task.id}`, task, { headers });
   }
 }
